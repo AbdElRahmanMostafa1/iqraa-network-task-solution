@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyCvjAFRgavwpmbqVhYGRPSt-Z07Kg0WqPc',
+    authDomain: 'iqraa-network-task.firebaseapp.com',
+    databaseURL: 'https://iqraa-network-task-default-rtdb.firebaseio.com',
+    projectId: 'iqraa-network-task',
+    storageBucket: 'iqraa-network-task.appspot.com',
+    messagingSenderId: '277972696997',
+    appId: '1:277972696997:web:3fd57cf53ba247e07a324c',
+    measurementId: 'G-Y668LY12KV',
+  },
 };
 
 /*

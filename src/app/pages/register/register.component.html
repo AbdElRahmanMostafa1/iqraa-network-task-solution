@@ -1,0 +1,80 @@
+<section class="shadow-md mt-9 bg-slate-100 p-3 rounded-lg">
+  <article class="flex flex-col">
+    <img
+      src="https://signup.com/mobileweb/2.0/images/build/mobile-organizers.png"
+      alt=""
+      class="w-44 mx-auto"
+    />
+    <h1 class="mx-auto my-3 font-bold">Create New Account</h1>
+  </article>
+  <form
+    class="bg-white p-3 rounded-lg shadow-zinc-600"
+    [formGroup]="signupForm"
+    (ngSubmit)="signupFormSubmit()"
+  >
+    <div class="block my-2">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="text"
+        class="border-grey-50 border-2 p-1 w-full"
+        formControlName="email"
+        (focus)="inputFocusHandler()"
+      />
+      <div
+        *ngIf="signupForm.controls?.['email']?.['touched']"
+        class="text-center text-red-600 font-bold"
+      >
+        <p *ngIf="signupForm.controls?.['email']?.errors?.['required']">
+          Email Field is required
+        </p>
+        <p *ngIf="signupForm.controls?.['email']?.errors?.['email']">
+          Please write your email correctly
+        </p>
+      </div>
+    </div>
+
+    <div class="block my-2">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        class="border-grey-50 border-2 p-1 w-full"
+        formControlName="password"
+        (focus)="inputFocusHandler()"
+      />
+      <div
+        *ngIf="signupForm.controls?.['password']?.['touched']"
+        class="text-center text-red-600 font-bold"
+      >
+        <p *ngIf="signupForm.controls?.['password']?.errors?.['required']">
+          Password Field is required
+        </p>
+        <p *ngIf="signupForm.controls?.['password']?.errors?.['minlength']">
+          Minimun characters for password is
+          {{signupForm.controls?.['password']?.errors?.['minlength'].requiredLength}}
+          but you entered
+          {{signupForm.controls?.['password']?.errors?.['minlength'].actualLength}}
+        </p>
+      </div>
+    </div>
+
+    <div
+      *ngIf="error?.['error']?.['error']?.message === 'EMAIL_EXISTS'"
+      class="text-center text-red-600 font-bold my-2"
+    >
+      <p>Email is already in use</p>
+    </div>
+
+    <button
+      class="p-3 w-full bg-teal-500 text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed"
+      [disabled]="signupForm.invalid"
+      *ngIf="!isLoading"
+    >
+      Sign up
+    </button>
+    <div *ngIf="isLoading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+  </form>
+</section>

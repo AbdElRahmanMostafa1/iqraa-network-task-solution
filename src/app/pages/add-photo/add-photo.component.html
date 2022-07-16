@@ -1,0 +1,69 @@
+<form
+  class="bg-white p-3 rounded-lg shadow-zinc-600"
+  [formGroup]="photoForm"
+  (ngSubmit)="photoFormSubmit()"
+>
+  <div class="block my-2">
+    <label for="title">Title</label>
+    <input
+      id="title"
+      type="text"
+      class="border-grey-50 border-2 p-1 w-full"
+      formControlName="title"
+    />
+    <div
+      *ngIf="photoForm.controls?.['title']?.['touched']"
+      class="text-center text-red-600 font-bold"
+    >
+      <p *ngIf="photoForm.controls?.['title']?.errors?.['required']">
+        Title Field is required
+      </p>
+    </div>
+  </div>
+
+  <div class="block my-2">
+    <label for="date">Date</label>
+    <input
+      id="date"
+      type="date"
+      class="border-grey-50 border-2 p-1 w-full"
+      formControlName="date"
+    />
+    <div
+      *ngIf="photoForm.controls?.['date']?.['touched']"
+      class="text-center text-red-600 font-bold"
+    >
+      <p *ngIf="photoForm.controls?.['date']?.errors?.['required']">
+        Date Field is required
+      </p>
+    </div>
+  </div>
+
+  <div class="block my-2">
+    <label for="photoURL">Photo URL</label>
+    <input
+      id="photoURL"
+      type="text"
+      class="border-grey-50 border-2 p-1 w-full"
+      formControlName="photoURL"
+    />
+    <div
+      *ngIf="photoForm.controls?.['photoURL']?.['touched']"
+      class="text-center text-red-600 font-bold"
+    >
+      <p *ngIf="photoForm.controls?.['photoURL']?.errors?.['required']">
+        Photo URL Field is required
+      </p>
+      <p *ngIf="photoForm.controls?.['photoURL']?.errors?.['pattern']">
+        Please Enter a url for image only
+      </p>
+    </div>
+  </div>
+
+  <button
+    class="p-3 w-full bg-teal-500 text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed"
+    [disabled]="photoForm.invalid"
+  >
+    Add Image
+  </button>
+</form>

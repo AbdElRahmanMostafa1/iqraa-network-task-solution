@@ -1,0 +1,37 @@
+<form [formGroup]="postsForm" (ngSubmit)="submitTextFormHandler()">
+  <div [froalaEditor] formControlName="postText"></div>
+  <button
+    class="px-3 py-2 my-2 bg-teal-500 text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed"
+    [disabled]="postsForm.invalid"
+  >
+    save
+  </button>
+  <div
+    class="text-center text-red-600 font-bold"
+    *ngIf="this.postsForm.controls?.['text']?.touched && this.postsForm.controls?.['text']?.['errors']"
+  >
+    <p *ngIf="this.postsForm.controls?.['text']?.['errors']?.['required']">
+      Please write a post
+    </p>
+  </div>
+</form>
+<hr />
+
+<section *ngIf="allPosts.length > 0" class="">
+  <div
+    *ngFor="let post of allPosts"
+    class="shadow-slate-700 border-2 rounded border-green-400 my-2 p-3 flex justify-between align-center"
+  >
+    <p [innerHtml]="post.postText"></p>
+    <button
+      class="bg-red-900 text-white rounded px-3 py-1"
+      (click)="deletePost(post)"
+    >
+      Delete
+    </button>
+  </div>
+</section>
+
+<h3 *ngIf="allPosts.length <= 0" class="text-center text-lg font-bold my-20">
+  No posts Yet!
+</h3>

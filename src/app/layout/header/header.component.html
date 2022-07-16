@@ -1,0 +1,17 @@
+<header class="px-5 py-3 text-center bg-green-100">
+  <!-- <p>Welcome to Iqraa Network task solution</p> -->
+  <nav class="flex justify-between align-center">
+    <h2 class="font-black text-lg"><a routerLink="/home"> IQraa </a></h2>
+    <ul class="flex">
+      <li *ngIf="isAuthenticated">
+        <a routerLink="/home" class="px-3 py-5"> Home </a>
+      </li>
+      <li *ngIf="isAuthenticated">
+        <a routerLink="/photos" class="px-3"> Photos </a>
+      </li>
+      <li class="px-3" *ngIf="isAuthenticated">
+        <button (click)="onLogout()">Logout</button>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,41 @@
+<section class="flex justify-center">
+  <button
+    (click)="navigateToAddPhoto()"
+    class="px-3 py-2 my-2 bg-teal-900 text-white rounded-lg"
+  >
+    Add Photo
+  </button>
+</section>
+<hr />
+
+<section *ngIf="photosData.length > 0">
+  <section class="m-3 flex justify-center">
+    <article
+      class="m-3 w-64 rounded bg-red-100 p-3"
+      *ngFor="let photoData of photosData"
+    >
+      <img
+        [src]="photoData.photoURL"
+        [alt]="photoData.title"
+        class="w-full h-36 rounded"
+      />
+      <div class="flex flex-col justify-between p-2">
+        <p class="self-end">{{ photoData.date }}</p>
+        <p>{{ photoData.title }}</p>
+      </div>
+      <button
+        class="w-full mt-2 bg-red-700 text-white"
+        (click)="deletePhotoHandler(photoData)"
+      >
+        Delete
+      </button>
+    </article>
+  </section>
+</section>
+
+<section
+  class="m-3 flex justify-center font-bold"
+  *ngIf="photosData.length <= 0"
+>
+  <h3 class="text-center">No Photos Yet!</h3>
+</section>
